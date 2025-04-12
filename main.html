@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Buster Bois</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0f0f0f;
+            height: 200vh;
+            overflow-x: hidden;
+        }
+
+        .background-image {
+            width: 100%;
+            height: 120vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 50, 0.4)), url('Untitled design (3).png') no-repeat center center/cover;
+            filter: brightness(1.2) contrast(1.15) saturate(1.1);
+            opacity: 0.95;
+            position: relative;
+            z-index: -1;
+            overflow-x: hidden;
+        }
+
+        .second-background {
+            width: 100%;
+            height: 120vh;
+            background: url('Untitled design (4).png') no-repeat center center/cover;
+            position: relative;
+            z-index: -2;
+            overflow-x: hidden;
+        }
+
+        .third-background {
+            width: 100%;
+            height: 120vh;
+            background: url('Untitled design (22).png') no-repeat center center/cover;
+            position: relative;
+            z-index: -2;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            padding-top: 60px;
+            overflow-x: hidden;
+        }
+
+        .hotwheels-link-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hotwheels-link-container a img {
+            max-width: 100%;
+            height: auto;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .hotwheels-link-container a img:hover {
+            transform: scale(1.05);
+        }
+
+        nav {
+            width: 90%;
+            max-width: 1400px;
+            background: rgba(5, 25, 55, 0.6);
+            transition: background 0.4s ease;
+            padding: 12px 30px;
+            border-radius: 25px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(8px);
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+        }
+
+        nav.scrolled {
+            background: linear-gradient(90deg, #051937, #372fa1);
+        }
+
+        .nav-left,
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .nav-left img,
+        .nav-right img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        .nav-center {
+            display: flex;
+            gap: 35px;
+        }
+
+        .nav-center a {
+            background: linear-gradient(to bottom, #6dd5fa, #2980b9);
+            padding: 8px 16px;
+            border-radius: 20px;
+            color: #000;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-center a:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background: linear-gradient(90deg, #0e1a40, #2b4ec9);
+            padding: 6px 14px;
+            border-radius: 20px;
+            gap: 8px;
+            border: 2px solid white;
+        }
+
+        .search-bar input {
+            border: none;
+            outline: none;
+            background: transparent;
+            color: white;
+            font-size: 14px;
+            width: 120px;
+        }
+
+        .search-bar input::placeholder {
+            color: #ddd;
+        }
+
+        .search-bar img {
+            width: 18px;
+            height: 18px;
+            filter: brightness(1000%);
+        }
+
+        .carousel-container {
+            position: absolute;
+            top: 10%;
+            width: 100%;
+            text-align: center;
+            color: white;
+        }
+
+        .carousel {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 80px;
+            overflow: hidden;
+            position: relative;
+            margin-top: 60px;
+            padding: 50px;
+            cursor: grab;
+            transform: scale(1.2);
+        }
+
+        .carousel-item {
+            flex: 0 0 200px;
+            opacity: 0.4;
+            transform: scale(0.9);
+            transition: all 0.6s ease-in-out;
+            text-align: center;
+        }
+
+        .carousel-item.active {
+            opacity: 1;
+            transform: scale(1.5);
+        }
+
+        .carousel-item img {
+            width: 160px;
+            height: auto;
+            border-radius: 14px;
+        }
+
+        .carousel-item p {
+            margin-top: 10px;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: bold;
+            color: white;
+            font-size: 16px;
+        }
+
+        .carousel-tagline-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 190px;
+            gap: 10px;
+        }
+
+        .carousel-tagline {
+            font-size: 50px;
+            font-weight: bold;
+            color: orange;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .carousel-dots {
+            margin-top: 60px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .carousel-dots span {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: white;
+            opacity: 0.4;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .carousel-dots span.active {
+            background: orange;
+            opacity: 1;
+            transform: scale(1.2);
+        }
+
+        .quick-fun-text {
+            position: absolute;
+            top: 120px;
+            /* Adjust as needed */
+            left: 40px;
+            /* Margin from left */
+            color: #ffcc00;
+            font-family: 'Press Start 2P', cursive;
+            /* Matches pixel style */
+            font-size: 40px;
+            line-height: 1.6;
+            text-shadow: 2px 2px #000;
+            top: 50%;
+            transform: translateY(-50%);
+
+        }
+
+
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 10px;
+                padding: 15px;
+            }
+
+            .nav-center {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+
+        .about-us-footer {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.15);
+            margin-top: auto;
+            color: white;
+            padding: 40px 20px 20px;
+            text-align: center;
+            position: absolute;
+            bottom: 0;
+
+        }
+
+        .about-us-footer h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .footer-line {
+            width: 90%;
+            margin: 0 auto 20px;
+            border-top: 2px solid white;
+            position: relative;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            font-size: 14px;
+            text-align: left;
+            max-width: 900px;
+            margin: 0 auto;
+            gap: 20px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            document.querySelector('nav').classList.toggle('scrolled', window.scrollY > 50);
+        });
+    </script>
+
+    <nav>
+        <div class="nav-left"><img src="https://via.placeholder.com/40" alt="Logo" /></div>
+        <div class="nav-center">
+            <a href="#">SHOP</a><a href="#">NEW RELEASE</a><a href="#">CARS & TRUCKS</a><a href="#">TRACKS</a><a
+                href="#">SOCIALS</a>
+        </div>
+        <div class="nav-right">
+            <div class="search-bar">
+                <input type="text" placeholder="Search here..." />
+                <img src="https://cdn-icons-png.flaticon.com/512/149/149852.png" alt="Search Icon" />
+            </div>
+            <img src="https://via.placeholder.com/40" alt="Profile" />
+        </div>
+    </nav>
+
+    <div class="background-image"></div>
+
+    <div class="second-background">
+        <div class="carousel-container">
+            <div class="carousel" id="carousel">
+                <div class="carousel-item"><img src="Untitled design (16).png" alt="Antiques">
+                    <p>Antiques</p>
+                </div>
+                <div class="carousel-item"><img src="Untitled design (15).png" alt="Die-Cast Series">
+                    <p>Die-Cast Series</p>
+                </div>
+                <div class="carousel-item"><img src="Untitled design (12).png" alt="Monster Trucks">
+                    <p>Monster Trucks</p>
+                </div>
+                <div class="carousel-item"><img src="Untitled design (13).png" alt="Kids' Arrival">
+                    <p>Kids' Arrival</p>
+                </div>
+                <div class="carousel-item"><img src="Untitled design (14).png" alt="Tracks">
+                    <p>Tracks</p>
+                </div>
+            </div>
+
+            <div class="carousel-dots" id="carousel-dots"></div>
+            <div class="carousel-tagline-wrapper">
+                <div class="carousel-tagline">GO BIG! GO HOT WHEELS.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="third-background">
+        <div class="hotwheels-link-container">
+            <a href="https://shop.mattel.com/pages/about-hot-wheels" target="_blank">
+                <img src="Untitled design (9).png" alt="About Hot Wheels" />
+            </a>
+            <div class="quick-fun-text">
+                <p>HAVE SOME<br>QUICK FUN<br>WHILE YOU<br>BROWSE!</p>
+            </div>
+        </div>
+
+        <div class="about-us-footer">
+            <h3>About Us</h3>
+            <div class="footer-line"></div>
+            <div class="footer-content">
+                <div>
+                    <a href="https://shop.mattel.com/pages/hot-wheels">Read about us</a>
+                    <br>
+                    <br>
+                    <br>
+                    <a href="https://shop.mattel.com/pages/hot-wheels">Contact : 12345</a>
+                </div>
+                <div>
+                    <a href="https://shop.mattel.com/pages/hot-wheels">Contact : 12345</a>
+                    <br>
+                    <br>
+                    <br>
+                    <a href="mailto:abc@gmail.com">Mail : abc@gmail.com</a>
+                </div>
+                <div>
+                    <a href="https://shop.mattel.com/pages/hot-wheels">Cookie Preferences</a>
+                    <br>
+                    <br>
+                    <br>
+                    <a href="https://shop.mattel.com/pages/hot-wheels">Safety Protocol</a>
+                </div>
+                <div>
+                    <a href="https://shop.mattel.com/pages/hot-wheels">Privacy Statement</a>
+                    <br>
+                    <br>
+                    <br>
+                    <a href="https://shop.mattel.com/pages/hot-wheels">Terms and Conditions</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const carousel = document.getElementById("carousel");
+        const items = Array.from(carousel.children);
+        const dotsContainer = document.getElementById("carousel-dots");
+        let currentIndex = 0;
+        let interval;
+        let isDragging = false;
+        let startX;
+
+        function updateCarousel() {
+            items.forEach((item, i) => {
+                item.classList.remove("active");
+                item.style.order = (i - currentIndex + items.length) % items.length;
+            });
+
+            const activeIndex = (currentIndex + 2) % items.length;
+            items[activeIndex].classList.add("active");
+
+            const dots = Array.from(dotsContainer.children);
+            dots.forEach(dot => dot.classList.remove("active"));
+            dots[currentIndex].classList.add("active");
+        }
+
+        function startAutoRotate() {
+            interval = setInterval(() => {
+                currentIndex = (currentIndex + 1) % items.length;
+                updateCarousel();
+            }, 3000);
+        }
+
+        function stopAutoRotate() {
+            clearInterval(interval);
+        }
+
+        carousel.addEventListener("mouseenter", stopAutoRotate);
+        carousel.addEventListener("mouseleave", startAutoRotate);
+
+        carousel.addEventListener("mousedown", (e) => {
+            isDragging = true;
+            startX = e.clientX;
+            carousel.style.cursor = "grabbing";
+        });
+
+        carousel.addEventListener("mouseup", (e) => {
+            if (isDragging) {
+                const diff = e.clientX - startX;
+                if (diff > 50) {
+                    currentIndex = (currentIndex - 1 + items.length) % items.length;
+                } else if (diff < -50) {
+                    currentIndex = (currentIndex + 1) % items.length;
+                }
+                updateCarousel();
+            }
+            isDragging = false;
+            carousel.style.cursor = "grab";
+        });
+
+        carousel.addEventListener("touchstart", (e) => {
+            startX = e.touches[0].clientX;
+        });
+
+        carousel.addEventListener("touchend", (e) => {
+            const endX = e.changedTouches[0].clientX;
+            const diff = endX - startX;
+            if (diff > 50) {
+                currentIndex = (currentIndex - 1 + items.length) % items.length;
+            } else if (diff < -50) {
+                currentIndex = (currentIndex + 1) % items.length;
+            }
+            updateCarousel();
+        });
+
+        items.forEach((_, i) => {
+            const dot = document.createElement("span");
+            dot.addEventListener("click", () => {
+                currentIndex = i;
+                updateCarousel();
+            });
+            dotsContainer.appendChild(dot);
+        });
+
+        updateCarousel();
+        startAutoRotate();
+    </script>
+</body>
+
+</html>
