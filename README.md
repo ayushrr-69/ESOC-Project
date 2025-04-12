@@ -6,8 +6,7 @@
 
 ## 🌐 Live Preview
 
-_Optional: Add a deployed link here if hosted somewhere._
-
+https://esoc-project.vercel.app/main.html
 ---
 
 ## 🎯 Features
