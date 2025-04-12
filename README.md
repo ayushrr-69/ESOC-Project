@@ -24,10 +24,6 @@ https://esoc-project.vercel.app/main.html
 - `second-background`: Carousel section with animated tagline.
 - `third-background`: Promotional area with clickable image and retro-style text.
 
-### 📱 Responsive Design
-- Mobile-optimized layout using media queries.
-- Navigation stacks vertically on smaller screens.
-
 ### 📩 Footer
 - Contains About, Contact Info, Privacy Policy, and External Links.
 - Styled with a translucent background to blend with the site.
