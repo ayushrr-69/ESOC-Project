@@ -2,8 +2,7 @@
 
 # 🚗 Buster Bois - Hot Wheels Inspired Landing Page
 
-**Buster Bois** is a visually engaging, interactive landing page inspired by the energy and excitement of Hot Wheels. It features a full-screen multi-section layout with dynamic carousels, a responsive navigation bar, themed imagery, and stylish animations to keep visitors engaged.
-
+**Buster Bois** is a visually engaging, interactive landing page inspired by the energy and excitement of Hot Wheels. It features a full-screen multi-section layout with dynamic carousels, a responsive navigation bar and themed imagery.
 ## 🌐 Live Preview
 
 https://esoc-project.vercel.app/main.html
